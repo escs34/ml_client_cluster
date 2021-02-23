@@ -1,3 +1,5 @@
 ## NESOY Ignore File ##
 
 *.ipynb
+*.jpeg
+*.sh
