@@ -69,11 +69,11 @@ try:
 
 
         connectionSock.send(sendData.encode('utf-8'))
+        connectionSock.close()
 finally:
     connectionSock.close()
     serverSock.close()
     
     
     
-
 
