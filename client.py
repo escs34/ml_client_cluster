@@ -7,6 +7,8 @@ import json
 
 import time
 
+import ast
+
 port = 9999
 
 
@@ -34,10 +36,13 @@ try:
         print(str(addr), ' : accessing from.')
 
 
-        recvData = connectionSock.recv(100000)
+        recvData = connectionSock.recv(1000000)
+
+        print(recvData)
 
         received_data = recvData.decode('utf-8')
-
+        #received_data = ast.literal_eval(received_data)
+        
         ##KV get key
         received_dict = json.loads(received_data)
         print(type(received_dict))
@@ -50,13 +55,13 @@ try:
 
         sendData = 'Result: '
 
-        if img != -1:
+        if img != "-1":
             img = np.array(json.loads(img_str),dtype='float32')
             print("Image received")
 
             sendData += 'Image received: ' + str(img.shape) + ',  '
 
-        if code_str != -1:
+        if code_str != "-1":
             #start -> metric -> return
             start_time = time.time()
             exec(code_str)
